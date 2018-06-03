@@ -5,7 +5,7 @@ install:
   - curl -S -O https://buildfarm.postgresql.org/downloads/latest-client.tgz
   - mkdir \bf
   - move latest-client.tgz \bf
-  - tar -C \bf -z --strip-components=1 -xf \bf\latest-client.tgz
+  - tar -C /bf -z --strip-components=1 -xf /bf/latest-client.tgz
   - mkdir buildroot
   - copy \bf\build-farm.conf.sample build-farm.conf
   - perl -spi.bak -e 's/build_root => undef/build_root => "\$confdir/buildroot"/; s/# (?=\$PGBuild::Options::from_source = \$confdir;)//;' build-farm.conf
