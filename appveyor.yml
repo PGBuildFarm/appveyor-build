@@ -3,6 +3,7 @@ install:
   - cinst winflexbison
   - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
   - curl -S -O https://buildfarm.postgresql.org/downloads/latest-client.tgz
+  - tar -z -tvf latest-client.tgz
   - mkdir \bf
   - move latest-client.tgz \bf
   - dir \bf
