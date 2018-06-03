@@ -7,6 +7,7 @@ install:
   - mkdir \bf
   - move latest-client.tgz \bf
   - dir \bf
+  - tar --version
   - tar -C /bf -z --strip-components=1 -xf /bf/latest-client.tgz
   - mkdir buildroot
   - copy \bf\build-farm.conf.sample build-farm.conf
