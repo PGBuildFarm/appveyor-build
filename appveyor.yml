@@ -2,10 +2,7 @@
 install:
   - cinst winflexbison
   - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
-  - curl -s -S -O https://buildfarm.postgresql.org/downloads/latest-client.tgz
-  - mkdir \bf
-  - tar --directory=c:/bf -z --strip-components=1 -xf latest-client.tgz
-  - move latest-client.tgz \bf
+  - git clone -q https://github.com/PGBuildfarm/client-code.git \bf
   - curl -s -S -O https://raw.githubusercontent.com/PGBuildFarm/appveyor-build/master/build-farm.conf
   
 before_build:
@@ -24,6 +21,6 @@ configuration:
 
 
 test_script:
-  - perl /bf/run_build.pl --skip-steps="configure make" APV
+  - perl /bf/run_build.pl --skip-steps="configure make" --show-error-log APV
 
 
