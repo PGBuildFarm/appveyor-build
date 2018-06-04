@@ -2,12 +2,11 @@
 install:
   - cinst winflexbison
   - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
-  - curl -S -O https://buildfarm.postgresql.org/downloads/latest-client.tgz
-  - tar -z -tvf latest-client.tgz
+  - curl -s -S -O https://buildfarm.postgresql.org/downloads/latest-client.tgz
   - mkdir \bf
   - tar --directory=c:/bf -z --strip-components=1 -xf latest-client.tgz
   - move latest-client.tgz \bf
-  - curl -S -O https://raw.githubusercontent.com/PGBuildFarm/appveyor-build/master/build-farm.conf
+  - curl -s -S -O https://raw.githubusercontent.com/PGBuildFarm/appveyor-build/master/build-farm.conf
   
 before_build:
   - rename c:\ProgramData\chocolatey\bin\win_flex.exe flex.exe
