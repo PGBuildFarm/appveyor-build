@@ -15,7 +15,6 @@ before_build:
   - perl /bf/run_build.pl --only-steps=configure APV
   - perl src/tools/msvc/build.pl PROJECTONLY
   - perl -spi.bak -e "s/^(test: tablespace)/# $1/;" src/test/regress/*_schedule
-  - mkdir buildroot
 
 build:
   project: pgsql.sln
