@@ -1,4 +1,9 @@
 #  appveyor.yml
+
+cache:
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+
 install:
   - cinst winflexbison
   - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
@@ -8,18 +13,18 @@ install:
 before_build:
   - rename c:\ProgramData\chocolatey\bin\win_flex.exe flex.exe
   - rename c:\ProgramData\chocolatey\bin\win_bison.exe bison.exe
-  - perl -spi.bak -e "/# check what sort of build we are doing/ && print q!exit 0 if ($ARGV[0] && $ARGV[0] eq q{PROJECTONLY});!,qq[\n];" src/tools/msvc/build.pl
+  - perl -spi.bak -e "/# check what sort of build we are doing/ && print q!exit 0 if ($ARGV[0] && $ARGV[0] eq q{ProjectOnly});!,qq[\n];" src/tools/msvc/build.pl
   - perl /bf/run_build.pl --only-steps=configure APV
-  - perl src/tools/msvc/build.pl PROJECTONLY
+  - perl src/tools/msvc/build.pl ProjectOnly > buildroot/APV/appveyor-bf.from-source-logs/buildsetup.log 2>&1 || type buildroot/APV/appveyor-bf.from-source-logs/buildsetup.log
   - perl -spi.bak -e "s/^(test:.tablespace)/# $1/;" src/test/regress/parallel_schedule src/test/regress/serial_schedule
   - grep tablespace src/test/regress/parallel_schedule src/test/regress/serial_schedule
 
 build:
   project: pgsql.sln
+  verbosity: quiet
   
 configuration:
   - Release
-
 
 test_script:
   - perl /bf/run_build.pl --skip-steps="configure make" --show-error-log APV
