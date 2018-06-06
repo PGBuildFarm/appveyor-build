@@ -8,7 +8,7 @@ install:
   - cinst winflexbison
   - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
   - git clone -q https://github.com/PGBuildfarm/client-code.git \bf
-  - curl -s -S -O https://raw.githubusercontent.com/PGBuildFarm/appveyor-build/master/build-farm.conf
+  - curl -s -S -O https://raw.githubusercontent.com/PGBuildFarm/appveyor-build/experimental/build-farm.conf
   
 before_build:
   - rename c:\ProgramData\chocolatey\bin\win_flex.exe flex.exe
