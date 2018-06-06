@@ -16,7 +16,7 @@ before_build:
   - perl -spi.bak -e "/# check what sort of build we are doing/ && print q!exit 0 if ($ARGV[0] && $ARGV[0] eq q{ProjectOnly});!,qq[\n];" src/tools/msvc/build.pl
   - perl /bf/run_build.pl --only-steps=configure APV
   - perl src/tools/msvc/build.pl ProjectOnly > buildroot\APV\appveyor-bf.fromsource-logs\buildsetup.log 2>&1 || type buildroot\APV\appveyor-bf.fromsource-logs\buildsetup.log
-  - perl -spi.bak -e "s/^(test:.tablespace)/# $1/;" src/test/regress/parallel_schedule src/test/regress/serial_schedule
+#  - perl -spi.bak -e "s/^(test:.tablespace)/# $1/;" src/test/regress/parallel_schedule src/test/regress/serial_schedule
 
 build:
   project: pgsql.sln
